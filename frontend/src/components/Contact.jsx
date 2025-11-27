@@ -1,12 +1,12 @@
-import { motion } from 'framer-motion';
-import { Send, MessageCircle, Mail } from 'lucide-react';
-import { useState } from 'react';
+import { motion } from "framer-motion";
+import { Send, MessageCircle, Mail } from "lucide-react";
+import { useState } from "react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -16,43 +16,62 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, message } = formData;
-    
+
     // Construct WhatsApp message
     const text = `Hello Simon, my name is ${name} (${email}). ${message}`;
     const encodedText = encodeURIComponent(text);
     const whatsappUrl = `https://wa.me/254762668200?text=${encodedText}`;
-    
+
     // Redirect to WhatsApp
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-violet-600/10 to-cyan-600/10 blur-[100px] rounded-full pointer-events-none" />
+    <section
+      id="contact"
+      className="py-24 px-6 relative overflow-hidden bg-[#0d1224]"
+    >
+      {/* Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+
+      {/* Fading Patches */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-violet-600/10 to-cyan-600/10 blur-[100px] rounded-full pointer-events-none" />
+
+      {/* Subtle "Box" Highlights */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-lg blur-2xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-pink-500/10 to-transparent rounded-lg blur-2xl" />
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Let's Build Something Amazing</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            Let's Build Something Amazing
+          </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Have a project in mind or just want to chat? I'm always open to discussing new opportunities and innovative ideas.
+            Have a project in mind or just want to chat? I'm always open to
+            discussing new opportunities and innovative ideas.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          
           {/* Contact Info */}
           <div className="space-y-8">
             <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl backdrop-blur-sm">
-              <h3 className="text-xl font-bold text-white mb-6">Contact Channels</h3>
-              
+              <h3 className="text-xl font-bold text-white mb-6">
+                Contact Channels
+              </h3>
+
               <div className="space-y-6">
-                <a href="https://wa.me/254762668200" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-slate-300 hover:text-green-400 transition-colors group">
+                <a
+                  href="https://wa.me/254762668200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 text-slate-300 hover:text-green-400 transition-colors group"
+                >
                   <div className="p-3 rounded-lg bg-slate-800 group-hover:bg-green-500/20 transition-colors">
                     <MessageCircle size={24} />
                   </div>
@@ -62,7 +81,10 @@ export default function Contact() {
                   </div>
                 </a>
 
-                <a href="mailto:simontiphy@gmail.com" className="flex items-center gap-4 text-slate-300 hover:text-violet-400 transition-colors group">
+                <a
+                  href="mailto:simontiphy@gmail.com"
+                  className="flex items-center gap-4 text-slate-300 hover:text-violet-400 transition-colors group"
+                >
                   <div className="p-3 rounded-lg bg-slate-800 group-hover:bg-violet-500/20 transition-colors">
                     <Mail size={24} />
                   </div>
@@ -79,10 +101,15 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium text-slate-400">Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
+                <label
+                  htmlFor="name"
+                  className="text-sm font-medium text-slate-400"
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -91,10 +118,15 @@ export default function Contact() {
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-slate-400">Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
+                <label
+                  htmlFor="email"
+                  className="text-sm font-medium text-slate-400"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -103,11 +135,16 @@ export default function Contact() {
                 />
               </div>
             </div>
-            
+
             <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-slate-400">Message</label>
-              <textarea 
-                id="message" 
+              <label
+                htmlFor="message"
+                className="text-sm font-medium text-slate-400"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
                 rows={4}
                 value={formData.message}
                 onChange={handleChange}
@@ -117,7 +154,7 @@ export default function Contact() {
               />
             </div>
 
-            <button 
+            <button
               type="submit"
               className="w-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-medium py-3 rounded-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
             >
@@ -125,7 +162,6 @@ export default function Contact() {
               <Send size={18} />
             </button>
           </form>
-
         </div>
       </div>
     </section>

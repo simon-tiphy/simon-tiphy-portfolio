@@ -1,6 +1,11 @@
-import { useState } from 'react';
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { useState } from "react";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  AnimatePresence,
+} from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -17,10 +22,10 @@ export default function Navbar() {
   });
 
   const navLinks = [
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Work', href: '#work' },
-    { name: 'Contact', href: '#contact' },
+    { name: "Skills", href: "#skills" },
+    { name: "Experience", href: "#experience" },
+    { name: "Work", href: "#work" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
@@ -34,8 +39,11 @@ export default function Navbar() {
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className="fixed top-0 inset-x-0 z-50 flex justify-center pt-6 px-6 pointer-events-none"
       >
-        <div className="pointer-events-auto flex items-center justify-between gap-8 px-6 py-3 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-800 shadow-lg shadow-black/20 w-full max-w-5xl">
-          <a href="#" className="text-slate-100 font-bold tracking-tight hover:text-cyan-400 transition-colors z-50">
+        <div className="pointer-events-auto flex items-center justify-between gap-8 px-6 py-3 rounded-full bg-slate-900/50 backdrop-blur-md border border-slate-800 shadow-lg shadow-black/20 w-full max-w-5xl">
+          <a
+            href="#"
+            className="text-slate-100 font-bold tracking-tight hover:text-cyan-400 transition-colors z-50"
+          >
             Simon Tiphy
           </a>
 
@@ -43,8 +51,8 @@ export default function Navbar() {
           <ul className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a 
-                  href={link.href} 
+                <a
+                  href={link.href}
                   className="text-sm font-medium text-slate-400 hover:text-white transition-colors"
                 >
                   {link.name}
@@ -54,7 +62,7 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-4">
-            <a 
+            <a
               href="#contact"
               className="hidden md:block px-4 py-1.5 rounded-full bg-slate-800 text-slate-200 text-sm font-medium hover:bg-slate-700 transition-colors"
             >
@@ -62,7 +70,7 @@ export default function Navbar() {
             </a>
 
             {/* Mobile Menu Toggle */}
-            <button 
+            <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 text-slate-300 hover:text-white z-50"
             >
@@ -83,14 +91,14 @@ export default function Navbar() {
           >
             <ul className="flex flex-col items-center gap-8">
               {navLinks.map((link) => (
-                <motion.li 
+                <motion.li
                   key={link.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <a 
-                    href={link.href} 
+                  <a
+                    href={link.href}
                     onClick={() => setIsOpen(false)}
                     className="text-2xl font-bold text-slate-300 hover:text-cyan-400 transition-colors"
                   >
@@ -103,7 +111,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <a 
+                <a
                   href="#contact"
                   onClick={() => setIsOpen(false)}
                   className="px-8 py-3 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-medium text-lg"

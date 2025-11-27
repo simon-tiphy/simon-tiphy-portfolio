@@ -22,10 +22,18 @@ export default function Hero() {
 };`;
 
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center px-6 lg:px-20 overflow-hidden pt-20 lg:pt-0">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-violet-600/20 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-pink-600/10 blur-[120px] rounded-full pointer-events-none" />
+    <section className="relative min-h-screen w-full flex items-center justify-center px-6 lg:px-20 overflow-hidden pt-20 lg:pt-0 bg-[#0d1224]">
+      {/* Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+
+      {/* Fading Patches (Middle & Ends) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-violet-600/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 left-[-200px] w-[500px] h-[500px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-[-200px] w-[600px] h-[600px] bg-pink-600/10 blur-[100px] rounded-full pointer-events-none" />
+
+      {/* Subtle "Box" Highlights on Grid */}
+      <div className="absolute top-1/3 left-0 w-64 h-64 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-lg blur-2xl" />
+      <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-gradient-to-tl from-pink-500/10 to-transparent rounded-lg blur-2xl" />
 
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left Column: Text & CTA */}
