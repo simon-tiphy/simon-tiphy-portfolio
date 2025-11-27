@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, FileText } from "lucide-react";
 
@@ -115,7 +114,7 @@ export default function Hero() {
 
         {/* Right Column: Code Window */}
         <motion.div
-          className="relative hidden lg:block"
+          className="relative block mt-12 lg:mt-0"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
