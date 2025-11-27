@@ -15,15 +15,17 @@
 
 ### Design Concept
 **Visuals:**
-- **Background:** A deep, noise-textured void (using `bg-zinc-950`) with a subtle, animated "mesh gradient" drifting in the bottom right corner. The gradient blends **Neon Cyan** (`#06b6d4`) and **Electric Purple** (`#8b5cf6`) but at 20% opacity to keep it "intelligent" and not overwhelming.
-- **Typography:** Swiss-style. Large, tight-tracking headings in a variable font like `Inter` or `Satoshi`. The "Hook" is white, while "Full Stack Developer" is a smaller, mono-spaced label in a dim gray (`text-zinc-500`) with a blinking cursor effect.
+- **Background:** A rich, deep slate-black (`#0d1224` or `bg-slate-950`) to match the premium feel.
+- **Hero Layout:** **Split Layout**. Left side: Typography & CTA. Right side: A **Glassmorphic Code Window** displaying a `developer` JSON object (referencing the inspiration site).
+- **Typography:** Left-aligned, Swiss-style headers.
+- **Accents:** **Pink (`#ec4899`)** and **Violet (`#8b5cf6`)** gradients for buttons and text highlights, blending with the original Cyan.
 
 **Tailwind Palette:**
-- **Background:** `bg-zinc-950` (Deepest dark)
-- **Surface:** `bg-zinc-900/50` (Glassmorphism cards)
-- **Primary Accent:** `text-cyan-400` (Neon Cyan for active states/links)
-- **Secondary Accent:** `text-violet-500` (Electric Purple for gradients/glows)
-- **Text:** `text-zinc-100` (Primary), `text-zinc-400` (Secondary)
+- **Background:** `bg-slate-950` (Rich dark blue-black)
+- **Surface:** `bg-slate-900/50` (Glassmorphism)
+- **Primary Accent:** `text-pink-500` (Vibrant Pink)
+- **Secondary Accent:** `text-violet-500` (Electric Purple)
+- **Tertiary Accent:** `text-cyan-400` (Cyber Cyan)
 
 ---
 
