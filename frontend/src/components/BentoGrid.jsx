@@ -95,13 +95,13 @@ export default function BentoGrid() {
         </Card>
 
         {/* Block 4: Sales Dashboard (Medium - Wide) */}
-        <Card href="https://github.com/simon-tiphy/optivensalestracking-system-" className="md:col-span-2 md:row-span-1 flex items-center justify-between gap-6 relative overflow-hidden">
+        <Card href="https://optivensalestracking-system.vercel.app/" className="md:col-span-2 md:row-span-1 flex items-center justify-between gap-6 relative overflow-hidden">
           <div className="flex-1 z-10">
             <h3 className="text-lg font-bold text-white flex items-center gap-2">
               <BarChart3 size={18} className="text-pink-500" />
               Sales Analytics
             </h3>
-            <p className="text-slate-400 text-xs mt-1">Data visualization dashboard for Optiven sales tracking.</p>
+            <p className="text-slate-400 text-xs mt-1">Data visualization dashboard for sales tracking.</p>
           </div>
           
           <div className="flex gap-2 relative z-10">
