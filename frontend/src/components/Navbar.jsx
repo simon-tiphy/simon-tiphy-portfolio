@@ -64,7 +64,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <a
-              href="#contact"
+              href="mailto:simontiphy@gmail.com"
               className="hidden md:block px-4 py-1.5 rounded-full bg-slate-800 text-slate-200 text-sm font-medium hover:bg-slate-700 transition-colors"
             >
               Let's Talk
@@ -113,7 +113,7 @@ export default function Navbar() {
                 transition={{ delay: 0.2 }}
               >
                 <a
-                  href="#contact"
+                  href="mailto:simontiphy@gmail.com"
                   onClick={() => setIsOpen(false)}
                   className="px-8 py-3 rounded-full bg-gradient-to-r from-violet-600 to-cyan-600 text-white font-medium text-lg"
                 >
