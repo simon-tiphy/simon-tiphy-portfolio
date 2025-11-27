@@ -1,32 +1,40 @@
-# Portfolio Update Plan
+# Implementation Plan: My Approach & Navbar Animations
 
-**Goal:** Update content (projects, dates) and refine design (Manifesto, Samsasali card).
+**Goal:** Add an interactive "My Approach" section and enhance navbar interactions.
 
 ## Proposed Changes
 
-### 1. Experience & Education
-#### [MODIFY] [Experience.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/components/Experience.jsx)
-- **Samsasali:** Update date to "2024 - Present".
-- **Moringa School:** Update date to "Graduated 2025".
+### 1. New Component: Approach.jsx
 
-### 2. Bento Grid Updates
-#### [MODIFY] [BentoGrid.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/components/BentoGrid.jsx)
-- **Remove:** Tech Stack block (redundant).
-- **Add:** `bank-account-project` (Bank App).
-- **Add:** `my--crms-system-project-1` (CRM System).
-- **Update:** Samsasali Card -> Add "Honey Jar" visual inside Hexagon.
-- **Update:** Spotify Card -> Change text to "Oontz".
-- **Layout Adjustment:**
-    - Replace Tech Stack block with **Bank App**.
-    - Add **CRM System** (maybe replace Backend block or add new row). *Decision: Replace Backend block with CRM (since Backend is abstract) or make CRM prominent.* Let's add CRM as a 2-span block and keep Backend or move it. Actually, let's replace the "Backend" code snippet block with the CRM project to show actual work, as the user wants to "include this project".
+#### [NEW] [Approach.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/components/Approach.jsx)
 
-### 3. Manifesto Redesign
-#### [MODIFY] [About.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/components/About.jsx)
-- **Design:** Create a more attractive, "editorial" look.
-- **Visuals:** Large typography, maybe a subtle background image or gradient, distinct from the rest.
+- **Layout:** 4-column grid (responsive).
+- **Design:**
+  - Dark cards with corner markers (`+`).
+  - "Phase X" button in the center initially.
+  - **Hover/Click:** Reveals title (e.g., "Planning") and description.
+  - **Background:** Gradient/Mesh gradient on reveal.
+- **Phases:**
+  1.  **Planning & Strategy:** "Blueprint for success."
+  2.  **Development:** "Clean, scalable code."
+  3.  **Testing & QA:** "Pixel-perfect precision."
+  4.  **Deployment:** "Shipping to the world."
 
-## Verification Plan
-- Verify new dates in Experience.
-- Check Bento Grid layout with new projects.
-- Verify Samsasali honey jar visual.
-- Check Manifesto design.
+### 2. Navbar Enhancements
+
+#### [MODIFY] [Navbar.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/components/Navbar.jsx)
+
+- Add `whileTap={{ scale: 0.95 }}` to nav links.
+- Ensure smooth scrolling is enabled (via CSS or Lenis if installed, but CSS `scroll-behavior: smooth` in `index.css` is standard).
+
+### 3. Integration
+
+#### [MODIFY] [App.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/App.jsx)
+
+- Import and add `Approach` component.
+
+## Verification
+
+- Test hover effects on desktop.
+- Test tap effects on mobile.
+- Verify navbar scroll animation.

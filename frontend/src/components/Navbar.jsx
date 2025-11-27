@@ -51,12 +51,13 @@ export default function Navbar() {
           <ul className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a
+                <motion.a
                   href={link.href}
-                  className="text-sm font-medium text-slate-400 hover:text-white transition-colors"
+                  whileTap={{ scale: 0.95 }}
+                  className="text-sm font-medium text-slate-400 hover:text-white transition-colors block"
                 >
                   {link.name}
-                </a>
+                </motion.a>
               </li>
             ))}
           </ul>
