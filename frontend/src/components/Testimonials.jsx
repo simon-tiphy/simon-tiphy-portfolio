@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
 
 const testimonials = [
   {
@@ -50,13 +50,23 @@ export default function Testimonials() {
   const containerRef = useRef(null);
   const [activeId, setActiveId] = useState(null);
   const [radius, setRadius] = useState(400);
+  const dragRotation = useMotionValue(0);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const rotation = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const scrollRotation = useTransform(scrollYProgress, [0, 1], [0, 360]);
+
+  // Combine scroll and drag rotation
+  const totalRotation = useTransform(
+    [scrollRotation, dragRotation],
+    ([s, d]) => s + d
+  );
+
+  // Counter-rotate satellites to keep them upright
+  const negativeRotation = useTransform(totalRotation, (r) => -r);
 
   useEffect(() => {
     const updateRadius = () => {
@@ -78,7 +88,7 @@ export default function Testimonials() {
 
       <div className="relative w-full max-w-[1200px] h-[600px] md:h-[1000px] flex items-center justify-center">
         {/* Central Hub */}
-        <div className="absolute z-20 w-32 h-32 md:w-64 md:h-64 bg-slate-900 rounded-full border-2 border-slate-700 flex items-center justify-center shadow-[0_0_80px_rgba(139,92,246,0.4)]">
+        <div className="absolute z-20 w-32 h-32 md:w-64 md:h-64 bg-slate-900 rounded-full border-2 border-slate-700 flex items-center justify-center shadow-[0_0_80px_rgba(139,92,246,0.4)] pointer-events-none">
           <div className="text-center p-2 md:p-6">
             <span className="block text-3xl md:text-6xl font-bold text-white mb-1 md:mb-2">
               W
@@ -89,10 +99,14 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Orbiting System */}
+        {/* Orbiting System (Draggable) */}
         <motion.div
-          style={{ rotate: rotation }}
-          className="absolute inset-0 w-full h-full flex items-center justify-center"
+          style={{ rotate: totalRotation }}
+          className="absolute inset-0 w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing touch-none"
+          onPan={(e, info) => {
+            // Adjust sensitivity based on screen size if needed
+            dragRotation.set(dragRotation.get() + info.delta.x * 0.5);
+          }}
         >
           {testimonials.map((t, i) => {
             const angle = (i / testimonials.length) * 360;
@@ -140,7 +154,7 @@ export default function Testimonials() {
                   className={`relative w-12 h-12 md:w-44 md:h-44 rounded-full md:rounded-3xl border border-slate-700 bg-slate-900/90 backdrop-blur-xl flex flex-col items-center justify-center p-0 md:p-4 text-center group hover:scale-110 transition-transform duration-300 cursor-pointer z-10 shadow-2xl ${
                     activeId === t.id ? "scale-110 ring-2 ring-cyan-400" : ""
                   }`}
-                  style={{ rotate: useTransform(rotation, (r) => -r) }} // Counter-rotate
+                  style={{ rotate: negativeRotation }} // Counter-rotate using combined value
                   onClick={(e) => {
                     e.stopPropagation();
                     setActiveId(activeId === t.id ? null : t.id);
