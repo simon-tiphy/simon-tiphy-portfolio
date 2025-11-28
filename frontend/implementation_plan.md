@@ -1,40 +1,44 @@
-# Implementation Plan: My Approach & Navbar Animations
+# Implementation Plan: Testimonials & Loading Screen
 
-**Goal:** Add an interactive "My Approach" section and enhance navbar interactions.
+**Goal:** Add a spinning "Hub and Spoke" testimonials section and a graphical loading screen.
 
 ## Proposed Changes
 
-### 1. New Component: Approach.jsx
+### 1. New Component: Testimonials.jsx
 
-#### [NEW] [Approach.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/components/Approach.jsx)
+#### [NEW] [Testimonials.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/components/Testimonials.jsx)
 
-- **Layout:** 4-column grid (responsive).
-- **Design:**
-  - Dark cards with corner markers (`+`).
-  - "Phase X" button in the center initially.
-  - **Hover/Click:** Reveals title (e.g., "Planning") and description.
-  - **Background:** Gradient/Mesh gradient on reveal.
-- **Phases:**
-  1.  **Planning & Strategy:** "Blueprint for success."
-  2.  **Development:** "Clean, scalable code."
-  3.  **Testing & QA:** "Pixel-perfect precision."
-  4.  **Deployment:** "Shipping to the world."
+- **Design:** Based on the reference image (Central Hub + Orbiting Nodes).
+- **Structure:**
+  - **Central Hub:** "What People Say" or Logo.
+  - **Satellites:** 6-8 Testimonial cards/avatars connected by curved SVG lines.
+- **Animation:**
+  - Use `framer-motion` `useScroll` and `useTransform` to rotate the entire system based on scroll position.
+  - "Spins beautifully and colorfully".
+- **Content:** Placeholder testimonials for now (or generic "Client X").
 
-### 2. Navbar Enhancements
+### 2. New Component: Loader.jsx
 
-#### [MODIFY] [Navbar.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/components/Navbar.jsx)
+#### [NEW] [Loader.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/components/Loader.jsx)
 
-- Add `whileTap={{ scale: 0.95 }}` to nav links.
-- Ensure smooth scrolling is enabled (via CSS or Lenis if installed, but CSS `scroll-behavior: smooth` in `index.css` is standard).
+- **Design:** Full-screen overlay.
+- **Animation:**
+  - Cyberpunk/Tech theme to match the site.
+  - Progress bar or "System Initializing" sequence.
+  - Smooth fade-out reveal.
 
 ### 3. Integration
 
 #### [MODIFY] [App.jsx](file:///home/tiphy/my-projects/simontiphyportfolio/frontend/src/App.jsx)
 
-- Import and add `Approach` component.
+- Import `Testimonials` and `Loader`.
+- Add `loading` state (default `true`).
+- Use `useEffect` to simulate loading time (e.g., 2-3 seconds) then set `loading` to `false`.
+- Render `Loader` if `loading` is true.
+- Insert `Testimonials` before `Contact`.
 
 ## Verification
 
-- Test hover effects on desktop.
-- Test tap effects on mobile.
-- Verify navbar scroll animation.
+- Verify the loading screen appears on refresh.
+- Verify the testimonials section spins on scroll.
+- Check mobile responsiveness (maybe stack items or reduce orbit size).
