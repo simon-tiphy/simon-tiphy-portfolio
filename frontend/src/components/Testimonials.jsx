@@ -105,7 +105,7 @@ export default function Testimonials() {
           className="absolute inset-0 w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing touch-none"
           onPan={(e, info) => {
             // Adjust sensitivity based on screen size if needed
-            dragRotation.set(dragRotation.get() + info.delta.x * 0.5);
+            dragRotation.set(dragRotation.get() - info.delta.x * 0.5);
           }}
         >
           {testimonials.map((t, i) => {
