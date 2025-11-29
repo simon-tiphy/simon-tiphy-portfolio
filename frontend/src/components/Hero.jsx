@@ -69,19 +69,14 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4">
               <a
                 href="mailto:simontiphy@gmail.com"
-                className="px-8 py-3 rounded-full bg-gradient-to-r from-violet-600 to-pink-600 text-white font-medium hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all transform hover:-translate-y-1"
+                className="relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 group hover:scale-105 transition-transform duration-300"
               >
-                Contact Me
-              </a>
-              <a
-                href="#"
-                className="px-8 py-3 rounded-full bg-slate-900/50 border border-slate-700 text-white font-medium hover:bg-slate-800 transition-all flex items-center gap-2 group"
-              >
-                <FileText
-                  size={18}
-                  className="group-hover:text-cyan-400 transition-colors"
-                />
-                Get Resume
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#06b6d4_0%,#8b5cf6_50%,#ec4899_100%)]" />
+                {/* Glow Effect Layer */}
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#06b6d4_0%,#8b5cf6_50%,#ec4899_100%)] blur-md opacity-50" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-bold text-white backdrop-blur-3xl transition-all group-hover:bg-slate-950/80 tracking-wide uppercase relative z-10">
+                  Contact Me
+                </span>
               </a>
             </div>
 
