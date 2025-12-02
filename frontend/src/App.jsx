@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Approach from "./components/Approach";
 import Testimonials from "./components/Testimonials";
 import Loader from "./components/Loader";
+import ChatWidget from "./components/ChatWidget";
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 
@@ -42,6 +43,7 @@ function App() {
           <Contact />
           <Dock />
           <Footer />
+          <ChatWidget />
         </>
       )}
     </main>
