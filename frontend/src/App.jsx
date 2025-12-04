@@ -34,11 +34,11 @@ function App() {
         <>
           <Navbar />
           <Hero />
+          <About />
           <Approach />
           <TechStack />
           <Experience />
           <BentoGrid />
-          <About />
           <Testimonials />
           <Contact />
           <Dock />
