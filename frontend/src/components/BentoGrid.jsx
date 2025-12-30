@@ -7,7 +7,6 @@ import {
   Music,
   Wallet,
   Users,
-  X,
   Github,
   ExternalLink,
   Terminal,
@@ -18,53 +17,78 @@ import samsasaliPreview from "../assets/samsasali_preview.png";
 import salesPreview1 from "../assets/sales_preview_1.png";
 import salesPreview2 from "../assets/sales_preview_2.png";
 
-const Card = ({ className, children, project }) => (
-  <motion.div
-    whileHover={{ scale: 1.01 }}
-    whileTap={{ scale: 0.99 }}
-    className={clsx(
-      "relative overflow-hidden rounded-3xl bg-slate-900/50 border border-slate-800 p-6 backdrop-blur-sm transition-colors hover:border-slate-700 group",
-      className
-    )}
-  >
-    {children}
+const Card = ({ className, children, project }) => {
+  const [isOverlayVisible, setOverlayVisible] = useState(false);
 
-    {/* Hover Overlay - Rolls in from bottom */}
-    <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-md flex flex-col items-center justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-20 p-6">
-      <h3 className="text-2xl font-bold text-white mb-6 text-center">
-        {project.title}
-      </h3>
-      <div className="flex flex-col w-full gap-3 max-w-xs">
-        {project.links.live && (
-          <a
-            href={project.links.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-slate-950 font-bold hover:bg-slate-200 transition-colors"
-          >
-            <ExternalLink size={18} />
-            Live Site
-          </a>
-        )}
-        {project.links.github && (
-          <a
-            href={project.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-slate-800 text-white border border-slate-700 hover:bg-slate-700 transition-colors"
-          >
-            <Github size={18} />
-            GitHub Repo
-          </a>
-        )}
+  // Toggle on click for mobile (and desktop if preferred)
+  const handleCardClick = () => {
+    setOverlayVisible(!isOverlayVisible);
+  };
 
-        {!project.links.live && !project.links.github && (
-          <span className="text-slate-400 text-sm">No links available</span>
-        )}
-      </div>
-    </div>
-  </motion.div>
-);
+  return (
+    <motion.div
+      whileHover={{ scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
+      onMouseEnter={() => setOverlayVisible(true)}
+      onMouseLeave={() => setOverlayVisible(false)}
+      onClick={handleCardClick}
+      className={clsx(
+        "relative overflow-hidden rounded-3xl bg-slate-900/50 border border-slate-800 p-6 backdrop-blur-sm transition-colors hover:border-slate-700 group cursor-pointer",
+        className
+      )}
+    >
+      {children}
+
+      {/* Overlay - Controlled by State for reliable mobile interaction */}
+      <motion.div
+        initial={{ y: "100%", opacity: 0 }}
+        animate={{
+          y: isOverlayVisible ? "0%" : "100%",
+          opacity: isOverlayVisible ? 1 : 0,
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        className="absolute inset-0 bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center z-20 p-6"
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking overlay/buttons
+      >
+        <h3 className="text-xl md:text-2xl font-bold text-white mb-6 text-center tracking-tight">
+          {project.title}
+        </h3>
+
+        <div className="flex flex-col w-full gap-3 max-w-[200px]">
+          {project.links.live && (
+            <a
+              href={project.links.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-2 px-4 rounded-lg bg-gradient-to-r from-cyan-500/90 to-blue-500/90 text-white text-sm font-semibold hover:opacity-100 transition-opacity shadow-lg shadow-cyan-500/10 border border-cyan-400/20"
+            >
+              <ExternalLink size={14} />
+              Visit Live
+            </a>
+          )}
+
+          {project.links.github && (
+            <a
+              href={project.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-2 px-4 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 text-sm hover:text-white hover:border-slate-500 transition-colors font-mono"
+            >
+              <Github size={14} />
+              View Code
+            </a>
+          )}
+
+          {!project.links.live && !project.links.github && (
+            <span className="text-slate-500 text-xs font-mono text-center">
+              No public links
+            </span>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 export default function BentoGrid() {
   const projects = {
