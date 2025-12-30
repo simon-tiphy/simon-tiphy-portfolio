@@ -4,7 +4,7 @@ Welcome to my personal portfolio codebase. This project showcases my selected wo
 
 ## Selected Work
 
-![Portfolio Preview](./portfolio_preview.png)
+![Portfolio Preview](./techie_portfolio_showcase.png)
 
 ### Key Projects
 
