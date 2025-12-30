@@ -12,7 +12,7 @@ const lyrics = [
   { text: "Driven by building scalable systems", highlight: "text-white" },
   { text: "I am a Problem Solver", highlight: "text-pink-400" },
   { text: "A Quick Learner", highlight: "text-white" },
-  { text: "And a Hard Worker", highlight: "text-white" },
+  { text: "And I work smart", highlight: "text-white" },
 ];
 
 export default function About() {
