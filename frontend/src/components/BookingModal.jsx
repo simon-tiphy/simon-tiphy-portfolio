@@ -18,46 +18,58 @@ export default function BookingModal({ isOpen, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 overflow-y-auto"
           />
 
           {/* Modal Container */}
           <div className="fixed inset-0 flex items-center justify-center z-[51] p-4 pointer-events-none">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-[#0f1629] border border-slate-800 w-full max-w-4xl h-[80vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-4xl h-[85vh] pointer-events-auto group"
             >
-              {/* Header */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#0d1224]">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-violet-500/10 rounded-lg">
-                    <Calendar className="text-violet-400" size={20} />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white">
-                    Book a Session
-                  </h3>
-                </div>
-                <button
-                  onClick={onClose}
-                  className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors"
-                >
-                  <X size={20} />
-                </button>
-              </div>
+              {/* Gradient Glow - Animated Border */}
+              <div className="absolute -inset-[1px] bg-gradient-to-r from-violet-600 via-cyan-500 to-pink-500 rounded-2xl opacity-75 blur-sm group-hover:opacity-100 group-hover:blur-md transition-all duration-500 animate-gradient-xy"></div>
 
-              {/* Content (Iframe) */}
-              <div className="flex-1 bg-white relative">
-                {/* Loading State or Instruction if URL is empty */}
-                <iframe
-                  src={bookingUrl}
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  title="Schedule Appointment"
-                  className="w-full h-full"
-                ></iframe>
+              {/* Main Content Card */}
+              <div className="relative w-full h-full bg-[#0d1224]/90 backdrop-blur-xl rounded-2xl overflow-hidden flex flex-col border border-white/10 shadow-2xl">
+                {/* Minimalist Header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-white/5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex gap-2 mr-4">
+                      <div
+                        className="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 transition-colors cursor-pointer"
+                        onClick={onClose}
+                      />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors" />
+                    </div>
+                    <span className="text-sm font-medium text-slate-400 font-mono tracking-wide uppercase">
+                      Simontiphy Scheduling System
+                    </span>
+                  </div>
+
+                  <button
+                    onClick={onClose}
+                    className="p-2 hover:bg-white/10 rounded-full text-slate-400 hover:text-white transition-colors"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+
+                {/* Iframe Content */}
+                <div className="flex-1 bg-white relative">
+                  <iframe
+                    src={bookingUrl}
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    title="Schedule Appointment"
+                    className="w-full h-full"
+                  ></iframe>
+                </div>
               </div>
             </motion.div>
           </div>
