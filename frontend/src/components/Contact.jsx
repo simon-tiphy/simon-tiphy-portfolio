@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Send, MessageCircle, Mail } from "lucide-react";
+import { Send, MessageCircle, Mail, Calendar } from "lucide-react"; // Added Calendar
 import { useState } from "react";
+import BookingModal from "./BookingModal"; // Added Import
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ export default function Contact() {
     email: "",
     message: "",
   });
+
+  const [isBookingOpen, setIsBookingOpen] = useState(false); // Added State
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -66,6 +69,22 @@ export default function Contact() {
               </h3>
 
               <div className="space-y-6">
+                {/* Book a Call Button - Highlighted */}
+                <button
+                  onClick={() => setIsBookingOpen(true)}
+                  className="w-full flex items-center gap-4 text-white hover:text-cyan-400 transition-colors group p-4 border border-violet-500/30 bg-violet-500/10 rounded-xl hover:bg-violet-500/20 active:scale-[0.98] transition-all"
+                >
+                  <div className="p-3 rounded-lg bg-violet-600 group-hover:bg-violet-500 transition-colors shadow-lg shadow-violet-500/20">
+                    <Calendar size={24} className="text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm text-violet-200">New!</p>
+                    <p className="font-bold text-lg">Book a Session</p>
+                  </div>
+                </button>
+
+                <div className="h-px bg-slate-800 my-4" />
+
                 <a
                   href="https://wa.me/254762668200"
                   target="_blank"
@@ -164,6 +183,12 @@ export default function Contact() {
           </form>
         </div>
       </div>
+
+      {/* Booking Modal */}
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
     </section>
   );
 }
