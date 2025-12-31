@@ -72,14 +72,21 @@ export default function Contact() {
                 {/* Book a Call Button - Highlighted */}
                 <button
                   onClick={() => setIsBookingOpen(true)}
-                  className="w-full flex items-center gap-4 text-white hover:text-cyan-400 transition-colors group p-4 border border-violet-500/30 bg-violet-500/10 rounded-xl hover:bg-violet-500/20 active:scale-[0.98] transition-all"
+                  className="w-full relative overflow-hidden group p-[1px] rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-slate-900"
                 >
-                  <div className="p-3 rounded-lg bg-violet-600 group-hover:bg-violet-500 transition-colors shadow-lg shadow-violet-500/20">
-                    <Calendar size={24} className="text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-sm text-violet-200">New!</p>
-                    <p className="font-bold text-lg">Book a Session</p>
+                  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                  <div className="relative w-full h-full bg-slate-950 rounded-xl p-4 flex items-center gap-4 transition-all group-hover:bg-slate-900">
+                    <div className="p-3 rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600 shadow-lg shadow-violet-500/20 group-hover:shadow-violet-500/40 transition-shadow">
+                      <Calendar size={24} className="text-white" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-xs font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 uppercase tracking-wider mb-1">
+                        Limited Availability
+                      </p>
+                      <p className="font-bold text-lg text-white group-hover:text-violet-200 transition-colors">
+                        Book a Strategy Call 🚀
+                      </p>
+                    </div>
                   </div>
                 </button>
 

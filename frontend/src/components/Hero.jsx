@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
+import { Github, Linkedin, Mail, Calendar } from "lucide-react";
+import { useState } from "react";
+import BookingModal from "./BookingModal";
 
 export default function Hero() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
   const codeString = `const developer = {
   name: "Simon Tiphy",
   role: "Full Stack Engineer",
@@ -67,16 +71,22 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <a
-                href="mailto:simontiphy@gmail.com"
-                className="relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 group hover:scale-105 transition-transform duration-300"
+              <button
+                onClick={() => setIsBookingOpen(true)}
+                className="relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-slate-900 group hover:scale-105 transition-transform duration-300 shadow-[0_0_25px_-5px_#8b5cf6]"
               >
-                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#06b6d4_0%,#8b5cf6_50%,#ec4899_100%)]" />
-                {/* Glow Effect Layer */}
-                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#06b6d4_0%,#8b5cf6_50%,#ec4899_100%)] blur-md opacity-50" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-bold text-white backdrop-blur-3xl transition-all group-hover:bg-slate-950/80 tracking-wide uppercase relative z-10">
-                  Contact Me
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-6 py-1 text-sm font-bold text-white backdrop-blur-3xl transition-all group-hover:bg-slate-950/80 tracking-wide gap-2">
+                  <Calendar size={18} className="text-violet-400" />
+                  Book Strategy Call ⚡️
                 </span>
+              </button>
+
+              <a
+                href="#contact"
+                className="inline-flex h-12 items-center justify-center rounded-full border border-slate-700 bg-slate-800/50 px-8 text-sm font-medium text-slate-300 backdrop-blur-sm transition-colors hover:bg-slate-800 hover:text-white"
+              >
+                Contact Me
               </a>
             </div>
 
@@ -204,6 +214,11 @@ export default function Hero() {
           </div>
         </motion.div>
       </div>
+
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
     </section>
   );
 }
